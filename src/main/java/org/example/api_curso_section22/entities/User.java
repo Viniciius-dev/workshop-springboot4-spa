@@ -1,12 +1,23 @@
 package org.example.api_curso_section22.entities;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Objects;
 
+@Entity
+@SuppressWarnings({"tb_user"})
+@Table(name = "tb_user") // o erro e pq o banco de dados e gerado na hora da aplicacao
 public class User implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
     private String email;
