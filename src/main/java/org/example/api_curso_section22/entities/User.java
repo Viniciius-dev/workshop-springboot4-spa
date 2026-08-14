@@ -1,16 +1,14 @@
 package org.example.api_curso_section22.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
-@SuppressWarnings({"tb_user"})
 @Table(name = "tb_user") // o erro e pq o banco de dados e gerado na hora da aplicacao
 public class User implements Serializable {
     @Serial
@@ -23,6 +21,13 @@ public class User implements Serializable {
     private String email;
     private String phone;
     private String password;
+
+    @OneToMany(mappedBy = "client")
+    private List<Order> orders = new ArrayList<>();
+
+    public List<Order> getOrders() {
+        return orders;
+    }
 
     public User(){
     }
@@ -86,5 +91,6 @@ public class User implements Serializable {
     public int hashCode() {
         return Objects.hashCode(id);
     }
+
 
 }
